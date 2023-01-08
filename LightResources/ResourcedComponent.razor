@@ -1,0 +1,35 @@
+@implements IDisposable
+
+@code {
+	public static event Action? LanguageChangedEvent;
+	
+	[Inject] public NavigationManager NavigationManager { get; set; } = null!;
+	[Inject] public IJSRuntime JsRuntime { get; set; } = null!;
+	
+	protected override void OnInitialized()
+	{
+		OnComponentInitialized();
+		
+		LanguageChangedEvent += OnLanguageChanged;
+		NavigationManager.LocationChanged += (_, _) => OnLanguageChanged();
+	}
+
+	protected virtual void OnComponentInitialized()
+	{
+	}
+
+	protected static void TriggerLanguageChangedEvent()
+	{
+		LanguageChangedEvent?.Invoke();
+	}
+
+	private void OnLanguageChanged()
+	{
+		StateHasChanged();
+	}
+	
+	public void Dispose()
+	{
+		LanguageChangedEvent -= OnLanguageChanged;
+	}
+}
