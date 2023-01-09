@@ -7,7 +7,7 @@ This is slow and cumbersome. LightResources fixes this problem by loading the re
 
 > This package works on every hosting model: Blazor WebAssembly (ASP.NET core hosted) or Blazor ServerSide. 
 
-> See www.CodeChops.nl for this package in action.
+> Check out www.CodeChops.nl to see this package in action, and to see more projects.
 
 # Advantages
 - The page does not need to be refreshed when switching the current UI language. So you get a real SPA.
