@@ -14,8 +14,8 @@
     </ItemGroup>
     
     <PropertyGroup Label="Package">
-        <Version>1.0.1</Version>
-        <PackageReleaseNotes>Updated package description.</PackageReleaseNotes>
+        <Version>1.0.2</Version>
+        <PackageReleaseNotes>Removed spaces before return or after (in order to fix Safari spaces).</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>CodeChops.LightResources</Title>
         <Description>Light and dynamic resources for your Blazor WebAssembly website.</Description>

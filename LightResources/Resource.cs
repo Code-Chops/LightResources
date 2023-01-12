@@ -77,7 +77,10 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 		
 		return GetOrCreateMember(
 			name: name,
-			valueCreator: value.Trim,
+			valueCreator: () => value
+				.Replace(Environment.NewLine + ' ', Environment.NewLine)
+				.Replace(' ' + Environment.NewLine, Environment.NewLine)
+				.Trim(),
 			memberCreator: memberCreator).Value;
 	}
 
