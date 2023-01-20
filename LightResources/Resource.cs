@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using CodeChops.ImplementationDiscovery;
+using CodeChops.ImplementationDiscovery.Discovered;
 using CodeChops.MagicEnums;
 using CodeChops.MagicEnums.Core;
 
@@ -14,7 +15,7 @@ namespace CodeChops.LightResources;
 /// <typeparam name="TResourceEnum">The enum that contains all <see cref="IResource"/>-implementations. To be found at 'CodeChops.LightResources'.</typeparam>
 public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, IResource
 	where TSelf : MagicStringEnum<TSelf>, IResource
-	where TResourceEnum : MagicEnumCore<ResourceEnum, DiscoveredObject<IResource>>, IMagicEnumCore<ResourceEnum, DiscoveredObject<IResource>>, IImplementationsEnum<IResource>, IInitializable
+	where TResourceEnum : MagicEnumCore<ResourceEnum, DiscoveredObjectBase<IResource>>, IMagicEnumCore<ResourceEnum, DiscoveredObjectBase<IResource>>, IImplementationsEnum<IResource>, IInitializable
 {
 	private static string DefaultResourceName { get; }
 	private static string ThisResourceName { get; }

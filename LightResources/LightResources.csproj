@@ -14,8 +14,8 @@
     </ItemGroup>
     
     <PropertyGroup Label="Package">
-        <Version>1.0.2</Version>
-        <PackageReleaseNotes>Removed spaces before return or after (in order to fix Safari spaces).</PackageReleaseNotes>
+        <Version>1.0.3</Version>
+        <PackageReleaseNotes>Updated packages.</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>CodeChops.LightResources</Title>
         <Description>Light and dynamic resources for your Blazor WebAssembly website.</Description>
@@ -55,11 +55,11 @@
     </ItemGroup>
     
     <ItemGroup Label="PackageReferences">
-        <PackageReference Include="CodeChops.DomainModeling" Version="2.0.1" />
-        <PackageReference Include="CodeChops.ImplementationDiscovery" Version="1.2.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.1" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.1" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.1" PrivateAssets="all" />
+        <PackageReference Include="CodeChops.DomainModeling" Version="2.3.5" />
+        <PackageReference Include="CodeChops.ImplementationDiscovery" Version="1.4.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.2" PrivateAssets="all" />
     </ItemGroup>
     
 </Project>
