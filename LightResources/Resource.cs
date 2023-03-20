@@ -48,7 +48,7 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 	/// <inheritdoc cref="CodeChops.MagicEnums.MagicStringEnum{TSelf}.CreateMember{TMember}(Func{TMember}?, string, string)"/>
 	protected new static string CreateMember<TMember>(Func<TMember>? memberCreator = null, string? value = null, [CallerMemberName] string name = null!)
 		where TMember : TSelf
-		=> GetOrCreateMember<TMember>(name: name, value: value, memberCreator);
+		=> GetOrCreateMember<TMember>(name: name, value: value, memberCreator)!;
 
 	/// <inheritdoc cref="CodeChops.MagicEnums.MagicStringEnum{TSelf}.GetOrCreateMember(string)"/>
 	protected new static string GetOrCreateMember(string name)
@@ -72,7 +72,7 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 			// It is possible that the non-default resource does not contain a member with that name, if so, don't look it up.
 			// The resource in the default language will be picked up at the end of this method.
 			if (TryGetSingleMember(name, out IMagicEnum<string>? member))
-				return member.Value;
+				return member.Value!;
 		}
 		
 		return GetOrCreateMember(
@@ -81,7 +81,7 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 				.Replace(Environment.NewLine + ' ', Environment.NewLine)
 				.Replace(' ' + Environment.NewLine, Environment.NewLine)
 				.Trim(),
-			memberCreator: memberCreator).Value;
+			memberCreator: memberCreator).Value!;
 	}
 
 	/// <summary>
@@ -91,7 +91,7 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 	public new static string GetSingleMember([CallerMemberName] string? name = null)
 	{
 		if (TryGetSingleMember(name!, out IMagicEnum<string>? member)) 
-			return member.Value;
+			return member.Value!;
 
 		throw new InvalidOperationException($"Unable to retrieve resource {name} for {ThisResourceName} (or {DefaultResourceName + LanguageCodeCache.CurrentSimpleLanguageCode}).");
 	}
