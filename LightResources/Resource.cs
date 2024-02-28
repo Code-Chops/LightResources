@@ -8,7 +8,7 @@ using CodeChops.MagicEnums.Core;
 namespace CodeChops.LightResources;
 
 /// <summary>
-/// Implement this class per resource / language code combination (similar to a .resx file).
+/// Implement this class per resource - language code combination (similar to a .resx file).
 /// </summary>
 /// <typeparam name="TSelf">The implemented record.</typeparam>
 /// <typeparam name="TResourceEnum">The enum that contains all <see cref="IResource"/>-implementations. To be found at 'CodeChops.LightResources'.</typeparam>
@@ -74,23 +74,20 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 			if (TryGetSingleMember(name, out IMagicEnum<string>? member))
 				return member.Value!;
 		}
-		
+
 		return GetOrCreateMember(
 			name: name,
-			valueCreator: () => value
-				.Replace(Environment.NewLine + ' ', Environment.NewLine)
-				.Replace(' ' + Environment.NewLine, Environment.NewLine)
-				.Trim(),
+			valueCreator: () => value,
 			memberCreator: memberCreator).Value!;
 	}
 
 	/// <summary>
-	/// Gets the single resource. 
+	/// Gets the single resource.
 	/// </summary>
 	/// <exception cref="InvalidOperationException">If the resource has not been found.</exception>
 	public new static string GetSingleMember([CallerMemberName] string? name = null)
 	{
-		if (TryGetSingleMember(name!, out IMagicEnum<string>? member)) 
+		if (TryGetSingleMember(name!, out IMagicEnum<string>? member))
 			return member.Value!;
 
 		throw new InvalidOperationException($"Unable to retrieve resource {name} for {ThisResourceName} (or {DefaultResourceName + LanguageCodeCache.CurrentSimpleLanguageCode}).");
@@ -125,10 +122,10 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 		}
 
 		var foreignResource = (IMagicEnum<string>)specificResource.Instance;
-		
+
 		return foreignResource.TryGetSingleMemberFromInstance(name, out member);
 	}
-	
+
 	/// <inheritdoc cref="CodeChops.MagicEnums.Core.MagicEnumCore{TSelf, TValue}.GetMemberCount()"/>
 	public new static int GetMemberCount() => MagicStringEnum<TSelf>.GetMemberCount();
 
@@ -143,9 +140,4 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 
 	/// <inheritdoc cref="CodeChops.MagicEnums.Core.MagicEnumCore{TSelf, TValue}.GetMembers(TValue)"/>
 	public new static IEnumerable<TSelf> GetMembers(string memberValue) => MagicStringEnum<TSelf>.GetMembers(memberValue);
-}
-
-[DiscoverImplementations(generateProxies: true)]
-public partial interface IResource
-{
 }

@@ -5,8 +5,7 @@ LightResources is a Blazor base component for enabling lightweight text resource
 When using the default .NET solution for localization, Blazor has to refresh the website in order to fetch and load the satellite DLL which contains the non-default resource.
 This is slow and cumbersome. LightResources fixes this problem by loading the resources statically when starting the application. Now the language can be changed dynamically on your page.
 
-> This package works on every hosting model: Blazor WebAssembly (ASP.NET core hosted) or Blazor ServerSide. 
-
+> This package works on every Blazor rendering mode.
 > Check out www.CodeChops.nl to see this package in action, and to see more projects.
 
 # Advantages
@@ -43,28 +42,18 @@ namespace CodeChops.Website.Client.Pages.Home;
 
 public record HomeResource : Resource<HomeResource, ResourceProxyEnum>
 {
-	public static string Title	=> CreateMember(@"
-Welcome
-");
+    public static string Title	=> CreateMember("Welcome");
 	
-	public static string Author	=> CreateMember(@"
-Logo, design and website by CodeChops
-");
+    public static string Author	=> CreateMember("Logo, design and website by CodeChops");
 }
 
 public record HomeResourceNL : Resource<HomeResourceNL, ResourceProxyEnum>
 {
-	public static string Title { get; }	= CreateMember(@"
-Welkom
-");
+    public static string Title { get; }	 = CreateMember("Welkom");
 
-	public static string Author { get; }	= CreateMember(@"
-Logo, design en website door CodeChops
-");
+    public static string Author { get; } = CreateMember("Logo, design en website door CodeChops");
 }
 ```
-
-> Resources will automatically be trimmed.
 
 > Note that the default language should have expression bodied properties.
 > This will forward your call to the resource in the current language (when the language is non-default).
@@ -96,6 +85,7 @@ The default ISO 639-1 language code with a 2-letter country code (ISO 3166-1 alp
 The resource managers make of MagicEnums under the hood, so the base API is the same as the [MagicEnum API](https://github.com/Code-Chops/MagicEnums/#).
 This API can be used to search for or add resources at runtime:
 
+### Resource
 | Method                | Description                                                                                                                      |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | `CreateMember`        | Creates a new discovered implementation member and returns it.                                                                   |
@@ -109,4 +99,3 @@ This API can be used to search for or add resources at runtime:
 | `GetMemberCount`      | Gets the member count.                                                                                                           |
 | `GetDefaultValue`     | Gets the default value of the enum.                                                                                              |
 | `GetOrCreateMember`   | Creates a member or gets one if a member already exists.                                                                         |
-

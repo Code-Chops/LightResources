@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
-    
+
     <PropertyGroup Label="Main">
         <AssemblyName>CodeChops.LightResources</AssemblyName>
         <RootNamespace>CodeChops.LightResources</RootNamespace>
-        <TargetFramework>net7.0</TargetFramework>
-        <LangVersion>11</LangVersion>
+        <TargetFramework>net8.0</TargetFramework>
+        <LangVersion>12</LangVersion>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
@@ -12,10 +12,10 @@
     <ItemGroup>
         <SupportedPlatform Include="browser" />
     </ItemGroup>
-    
+
     <PropertyGroup Label="Package">
-        <Version>1.3.0</Version>
-        <PackageReleaseNotes>Updated packages 5.</PackageReleaseNotes>
+        <Version>1.4.0</Version>
+        <PackageReleaseNotes>Added ambient context.</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>CodeChops.LightResources</Title>
         <Description>Light and dynamic resources for your Blazor WebAssembly website.</Description>
@@ -53,13 +53,12 @@
         <None Include="..\icon.png" Pack="true" Visible="true" PackagePath="" />
         <None Include="..\README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
-    
+
     <ItemGroup Label="PackageReferences">
-        <PackageReference Include="CodeChops.DomainModeling" Version="2.15.0" />
+        <PackageReference Include="Architect.AmbientContexts" Version="2.0.0" />
+        <PackageReference Include="CodeChops.DomainModeling" Version="2.16.0" />
         <PackageReference Include="CodeChops.ImplementationDiscovery" Version="1.8.6" />
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.4" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.4" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.4" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.2" />
     </ItemGroup>
-    
+
 </Project>
