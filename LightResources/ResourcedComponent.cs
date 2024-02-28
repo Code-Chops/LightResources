@@ -7,7 +7,7 @@ public abstract class ResourcedComponent : ComponentBase
 {
     [Inject] private NavigationManager NavigationManager { get; init; } = null!;
 
-    private event Action? LanguageChangedEvent;
+    protected event Action? LanguageChangedEvent;
 
     protected override void OnInitialized()
     {
