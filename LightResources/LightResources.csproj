@@ -14,8 +14,8 @@
     </ItemGroup>
 
     <PropertyGroup Label="Package">
-        <Version>1.4.1</Version>
-        <PackageReleaseNotes>LanguageChangedEvent protected.</PackageReleaseNotes>
+        <Version>1.4.2</Version>
+        <PackageReleaseNotes>LanguageCodeGetter</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>CodeChops.LightResources</Title>
         <Description>Light and dynamic resources for your Blazor WebAssembly website.</Description>

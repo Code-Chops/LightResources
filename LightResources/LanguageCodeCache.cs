@@ -12,9 +12,9 @@ public static class LanguageCodeCache
 	/// <summary>
 	/// The current displayed language code. The default ISO 639-1 language code with a 2-letter country code (ISO 3166-1 alpha-2) where relevant: "en-GB".
 	/// </summary>
-	public static LanguageCode CurrentLanguageCode => LanguageScope.Current.LanguageCode;
+	public static LanguageCode CurrentLanguageCode => LanguageScope.Current.LanguageCodeGetter;
 
-	public static bool CurrentLanguageCodeIsDefault => LanguageScope.Current.LanguageCode == DefaultLanguageCode;
+	public static bool CurrentLanguageCodeIsDefault => LanguageScope.Current.LanguageCodeGetter == DefaultLanguageCode;
 
 	/// <summary>
 	/// Takes the first 2 letters of <see cref="CurrentLanguageCode"/> and converts it to upper invariant.
@@ -42,7 +42,7 @@ public static class LanguageCodeCache
 
 		SupportedLanguageCodes.GetSingleMember(memberValue: languageCode);
 
-		LanguageScope.Current.LanguageCode = languageCode;
+		LanguageScope.Current.LanguageCodeGetter = languageCode;
 		CurrentSimpleLanguageCode = CurrentLanguageCode.GetSimpleLanguageCode().ToUpperInvariant();
 	}
 }
