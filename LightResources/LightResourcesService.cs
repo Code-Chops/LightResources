@@ -1,18 +1,12 @@
 namespace CodeChops.LightResources;
 
-public class LightResourcesServiceService : ILightResourcesService
+public class LightResourcesService : ILightResourcesService
 {
 	/// <summary>
 	/// The default ISO 639-1 language code with a 2-letter country code (ISO 3166-1 alpha-2) where relevant: "en-GB".
 	/// </summary>
 	public static LanguageCode DefaultLanguageCode => _defaultLanguageCode ?? throw new InvalidOperationException("Trying to retrieve default language code but it has not been set.");
 	private static LanguageCode? _defaultLanguageCode;
-
-	/// <summary>
-	/// The current displayed language code.
-	/// The default ISO 639-1 language code with a 2-letter country code (ISO 3166-1 alpha-2) where relevant: "en-GB".
-	/// </summary>
-	public LanguageCode CurrentLanguageCode => LanguageScope.Current.LanguageCodeGetter();
 
 	internal void AddLanguage(LanguageCode languageCode)
 	{

@@ -32,7 +32,7 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 		}
 		else
 		{
-			ThisLanguageCode = LightResourcesServiceService.DefaultLanguageCode;
+			ThisLanguageCode = LightResourcesService.DefaultLanguageCode;
 			DefaultResourceName = ThisResourceName;
 		}
 

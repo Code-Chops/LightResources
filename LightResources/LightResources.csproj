@@ -14,8 +14,8 @@
     </ItemGroup>
 
     <PropertyGroup Label="Package">
-        <Version>1.4.4</Version>
-        <PackageReleaseNotes>Created LightResourcesService.</PackageReleaseNotes>
+        <Version>1.4.5</Version>
+        <PackageReleaseNotes>Simplified.</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>CodeChops.LightResources</Title>
         <Description>Light and dynamic resources for your Blazor WebAssembly website.</Description>
