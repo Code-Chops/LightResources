@@ -78,7 +78,6 @@ The default ISO 639-1 language code with a 2-letter country code (ISO 3166-1 alp
 |--------------------------------|----------------------------------------------------------------------------------------|
 | `DefaultLanguageCode`          | Retrieves the default language code.                                                   |
 | `CurrentLanguageCode`          | Retrieves the currently displayed language code.                                       |
-| `CurrentLanguageCodeIsDefault` | Returns `true` when the current displayed language code is the default language code.  | 
 | `CurrentSimpleLanguageCode`    | Takes the first 2 letters of `CurrentLanguageCode` and converts it to upper invariant. |
 | `SetCurrentLanguage()`         | Sets the current displayed language code.                                              | 
 

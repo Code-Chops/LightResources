@@ -16,12 +16,10 @@ public partial record struct LanguageCode
 	/// <summary>
 	/// Gets the first part of the ISO 639-1 language code "en-GB" -> "en".
 	/// </summary>
-	/// <returns></returns>
 	public string GetSimpleLanguageCode()	=> this.Value.Split('-')[0];
 
 	/// <summary>
 	/// Gets the last part of the ISO 639-1 language code "en-GB" -> "GB".
 	/// </summary>
-	/// <returns></returns>
 	public string GetCountryCode()			=> this.Value.Split('-')[1];
 }

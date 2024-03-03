@@ -32,7 +32,7 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 		}
 		else
 		{
-			ThisLanguageCode = LanguageCodeCache.DefaultLanguageCode;
+			ThisLanguageCode = LightResourcesServiceService.DefaultLanguageCode;
 			DefaultResourceName = ThisResourceName;
 		}
 
@@ -61,13 +61,17 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 	// ReSharper disable once MethodOverloadWithOptionalParameter
 	protected new static string GetOrCreateMember(string value, [CallerMemberName] string name = null!, Func<TSelf>? memberCreator = null)
 	{
+		var currentLanguageCode = LanguageScope.Current.LanguageCodeGetter().GetSimpleLanguageCode().ToUpperInvariant();
+
 		if (name is null || value is null)
-			throw new ArgumentNullException($"Empty name: Unable to retrieve resource {ThisResourceName} for country code {LanguageCodeCache.CurrentSimpleLanguageCode}.");
+			throw new ArgumentNullException($"Empty name: Unable to retrieve resource {ThisResourceName} for country code {currentLanguageCode}.");
 
 		// If this is the default resource (e.g. GeneralResource.Warning), the resource in the currently configured country code should be used.
 		// Therefore, check if the the current configured country code differs from the default country code.
 		// It is possible that the ResourceEnum is not initialized completely (because of static build-up).
-		if (ThisResourceName == DefaultResourceName && ThisLanguageCode != LanguageCodeCache.CurrentSimpleLanguageCode && TResourceEnum.IsInitialized)
+		if (ThisResourceName == DefaultResourceName
+		    && currentLanguageCode != ThisLanguageCode
+		    && TResourceEnum.IsInitialized)
 		{
 			// It is possible that the non-default resource does not contain a member with that name, if so, don't look it up.
 			// The resource in the default language will be picked up at the end of this method.
@@ -87,10 +91,11 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 	/// <exception cref="InvalidOperationException">If the resource has not been found.</exception>
 	public new static string GetSingleMember([CallerMemberName] string? name = null)
 	{
-		if (TryGetSingleMember(name!, out IMagicEnum<string>? member))
-			return member.Value!;
+		if (!TryGetSingleMember(name!, out IMagicEnum<string>? member))
+			throw new InvalidOperationException(
+				$"Unable to retrieve resource {name} for {ThisResourceName} (or {DefaultResourceName + LanguageScope.Current.LanguageCodeGetter().GetSimpleLanguageCode().ToUpperInvariant()}).");
 
-		throw new InvalidOperationException($"Unable to retrieve resource {name} for {ThisResourceName} (or {DefaultResourceName + LanguageCodeCache.CurrentSimpleLanguageCode}).");
+		return member.Value!;
 	}
 
 	/// <summary>
@@ -113,7 +118,7 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 	/// </summary>
 	public static bool TryGetSingleMember(string name, [NotNullWhen(true)] out IMagicEnum<string>? member)
 	{
-		var newResourceName = DefaultResourceName + LanguageCodeCache.CurrentSimpleLanguageCode;
+		var newResourceName = DefaultResourceName + LanguageScope.Current.LanguageCodeGetter().GetSimpleLanguageCode().ToUpperInvariant();
 
 		if (!TResourceEnum.TryGetSingleMember(newResourceName, out var specificResource) && !TResourceEnum.TryGetSingleMember(DefaultResourceName, out specificResource))
 		{

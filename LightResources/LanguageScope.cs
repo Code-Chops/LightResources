@@ -4,10 +4,9 @@ namespace CodeChops.LightResources;
 
 public class LanguageScope : AmbientScope<LanguageScope>
 {
-    static LanguageScope()
+    internal new static void SetDefaultScope(LanguageScope defaultScope)
     {
-        var defaultScope = new LanguageScope(languageCodeGetter: static () => new LanguageCode("en-GB"), isDefaultScope: true);
-        SetDefaultScope(defaultScope);
+        AmbientScope<LanguageScope>.SetDefaultScope(defaultScope);
     }
 
     /// <summary>
@@ -16,7 +15,7 @@ public class LanguageScope : AmbientScope<LanguageScope>
     /// </summary>
     public static LanguageScope Current => GetAmbientScope()!;
 
-    public Func<LanguageCode> LanguageCodeGetter { get; set; }
+    public Func<LanguageCode> LanguageCodeGetter { get; }
 
     public LanguageScope(Func<LanguageCode> languageCodeGetter)
         : this(languageCodeGetter, isDefaultScope: false)
@@ -28,7 +27,7 @@ public class LanguageScope : AmbientScope<LanguageScope>
     {
     }
 
-    private LanguageScope(Func<LanguageCode> languageCodeGetter, bool isDefaultScope)
+    internal LanguageScope(Func<LanguageCode> languageCodeGetter, bool isDefaultScope)
         : base(AmbientScopeOption.ForceCreateNew)
     {
         this.LanguageCodeGetter = languageCodeGetter;
