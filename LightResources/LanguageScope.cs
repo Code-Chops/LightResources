@@ -6,7 +6,7 @@ public class LanguageScope : AmbientScope<LanguageScope>
 {
     static LanguageScope()
     {
-        var defaultScope = new LanguageScope(languageCodeGetter: new LanguageCode("en-GB"), isDefaultScope: true);
+        var defaultScope = new LanguageScope(languageCodeGetter: static () => new LanguageCode("en-GB"), isDefaultScope: true);
         SetDefaultScope(defaultScope);
     }
 
