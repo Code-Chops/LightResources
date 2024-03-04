@@ -2,8 +2,8 @@
 
 namespace CodeChops.LightResources;
 
-public record SupportedLanguageCodes : MagicCustomEnum<SupportedLanguageCodes, CultureCode>
+public record SupportedLanguageCodes : MagicCustomEnum<SupportedLanguageCodes, LanguageCode>
 {
- 	public static SupportedLanguageCodes CreateMember(CultureCode cultureCode)
-		=> CreateMember(value: cultureCode, name: cultureCode.Value);
+ 	public static SupportedLanguageCodes CreateMember(LanguageCode languageCode)
+		=> CreateMember(value: languageCode, name: languageCode.Value);
 }
