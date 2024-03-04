@@ -11,6 +11,6 @@ namespace CodeChops.LightResources;
     useValidationExceptions: false)]
 public partial record struct LanguageCode
 {
-	[GeneratedRegex("/^[a-z]{2}$/")]
+	[GeneratedRegex("/^[a-z][A-Z]{2}$/")]
 	public static partial Regex ValidationRegex();
 }
