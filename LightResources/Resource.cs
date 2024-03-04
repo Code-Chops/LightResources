@@ -61,7 +61,7 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 	// ReSharper disable once MethodOverloadWithOptionalParameter
 	protected new static string GetOrCreateMember(string value, [CallerMemberName] string name = null!, Func<TSelf>? memberCreator = null)
 	{
-		var currentLanguageCode = LanguageScope.Current.LanguageCodeGetter().GetSimpleLanguageCode().ToUpperInvariant();
+		var currentLanguageCode = LanguageScope.Current.LanguageCodeGetter().GetSimpleLanguageCode();
 
 		if (name is null || value is null)
 			throw new ArgumentNullException($"Empty name: Unable to retrieve resource {ThisResourceName} for country code {currentLanguageCode}.");
@@ -70,7 +70,7 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 		// Therefore, check if the the current configured country code differs from the default country code.
 		// It is possible that the ResourceEnum is not initialized completely (because of static build-up).
 		if (ThisResourceName == DefaultResourceName
-		    && currentLanguageCode != ThisLanguageCode
+		    && !String.Equals(currentLanguageCode, ThisLanguageCode)
 		    && TResourceEnum.IsInitialized)
 		{
 			// It is possible that the non-default resource does not contain a member with that name, if so, don't look it up.

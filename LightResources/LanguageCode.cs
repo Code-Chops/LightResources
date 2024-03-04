@@ -10,7 +10,7 @@ namespace CodeChops.LightResources;
     propertyIsPublic: true, useRegex: true, useValidationExceptions: false)]
 public partial record struct LanguageCode
 {
-	[GeneratedRegex("^[a-z]{2}-[A-Z]{2}$")]
+	[GeneratedRegex("/^[a-z]{2,3}(?:-[a-zA-Z]{4})?(?:-[A-Z]{2,3})?$/")]
 	public static partial Regex ValidationRegex();
 
 	/// <summary>
@@ -21,5 +21,5 @@ public partial record struct LanguageCode
 	/// <summary>
 	/// Gets the last part of the ISO 639-1 language code "en-GB" -> "GB".
 	/// </summary>
-	public string GetCountryCode()			=> this.Value.Split('-')[1];
+	public string GetCountryCode()			=> this.Value.Split('-').Last();
 }
