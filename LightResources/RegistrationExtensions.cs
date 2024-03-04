@@ -4,12 +4,12 @@ namespace CodeChops.LightResources;
 
 public static class RegistrationExtensions
 {
-	public static IServiceCollection AddLightResources(this IServiceCollection services, Func<LanguageCode> currentLanguageCodeGetter,
-		LanguageCode defaultLanguageCode, params LanguageCode[] supportedLanguageCodes)
+	public static IServiceCollection AddLightResources(this IServiceCollection services, Func<CultureCode> currentLanguageCodeGetter,
+		CultureCode defaultCultureCode, params CultureCode[] supportedLanguageCodes)
 	{
 		var lightResources = new LightResourcesService();
 
-		lightResources.AddLanguage(defaultLanguageCode);
+		lightResources.AddLanguage(defaultCultureCode);
 
 		foreach (var code in supportedLanguageCodes)
 			lightResources.AddLanguage(code);

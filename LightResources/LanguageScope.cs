@@ -15,19 +15,19 @@ public class LanguageScope : AmbientScope<LanguageScope>
     /// </summary>
     public static LanguageScope Current => GetAmbientScope()!;
 
-    public Func<LanguageCode> LanguageCodeGetter { get; }
+    public Func<CultureCode> LanguageCodeGetter { get; }
 
-    public LanguageScope(Func<LanguageCode> languageCodeGetter)
+    public LanguageScope(Func<CultureCode> languageCodeGetter)
         : this(languageCodeGetter, isDefaultScope: false)
     {
     }
 
-    public LanguageScope(LanguageCode languageCode)
-        : this(() => languageCode, isDefaultScope: false)
+    public LanguageScope(CultureCode cultureCode)
+        : this(() => cultureCode, isDefaultScope: false)
     {
     }
 
-    internal LanguageScope(Func<LanguageCode> languageCodeGetter, bool isDefaultScope)
+    internal LanguageScope(Func<CultureCode> languageCodeGetter, bool isDefaultScope)
         : base(AmbientScopeOption.ForceCreateNew)
     {
         this.LanguageCodeGetter = languageCodeGetter;
