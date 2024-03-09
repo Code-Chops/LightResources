@@ -14,8 +14,8 @@
     </ItemGroup>
 
     <PropertyGroup Label="Package">
-        <Version>1.5.2</Version>
-        <PackageReleaseNotes>Language code tolerant validation regex.</PackageReleaseNotes>
+        <Version>1.5.3</Version>
+        <PackageReleaseNotes>Changed validation regex.</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>CodeChops.LightResources</Title>
         <Description>Light and dynamic resources for your Blazor WebAssembly website.</Description>

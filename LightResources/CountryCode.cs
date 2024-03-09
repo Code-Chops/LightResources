@@ -11,6 +11,6 @@ namespace CodeChops.LightResources;
     useValidationExceptions: false)]
 public partial record struct CountryCode
 {
-	[GeneratedRegex("/^[a-zA-Z]{2}$/")]
+	[GeneratedRegex("^[a-zA-Z]{2}$")]
 	public static partial Regex ValidationRegex();
 }
