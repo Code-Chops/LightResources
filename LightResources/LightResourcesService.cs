@@ -19,14 +19,8 @@ public class LightResourcesService : ILightResourcesService
 		_defaultCultureCode = cultureCode;
 	}
 
-	internal static void AddCulture(LanguageCode languageCode)
+	internal static void AddSupportedLanguage(LanguageCode languageCode)
 	{
-		if (SupportedLanguageCodes.GetMemberCount() is 0)
-			throw new InvalidOperationException("Can't set new language code: no supported language codes have been added.");
-
-		if (!SupportedLanguageCodes.GetMembers(languageCode).Any())
-			throw new InvalidOperationException($"Trying to set current languageCode '{languageCode}' but it's not configured as a supported one.");
-
 		SupportedLanguageCodes.GetSingleMember(memberValue: languageCode);
 	}
 }

@@ -12,7 +12,7 @@ public static class RegistrationExtensions
 		LightResourcesService.SetDefaultCultureCode(defaultCultureCode);
 
 		foreach (var code in supportedLanguageCodes)
-			LightResourcesService.AddCulture(code);
+			LightResourcesService.AddSupportedLanguage(code);
 
 		services.AddScoped<ILightResourcesService>(_ => lightResources);
 
