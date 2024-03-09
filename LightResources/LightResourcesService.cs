@@ -21,6 +21,6 @@ public class LightResourcesService : ILightResourcesService
 
 	internal static void AddSupportedLanguage(LanguageCode languageCode)
 	{
-		SupportedLanguageCodes.GetSingleMember(memberValue: languageCode);
+		SupportedLanguageCodes.CreateMember(languageCode);
 	}
 }
