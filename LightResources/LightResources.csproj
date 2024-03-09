@@ -14,8 +14,8 @@
     </ItemGroup>
 
     <PropertyGroup Label="Package">
-        <Version>1.5.5</Version>
-        <PackageReleaseNotes>Changed registration 2.</PackageReleaseNotes>
+        <Version>1.5.6</Version>
+        <PackageReleaseNotes>Don't add default resources.</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>CodeChops.LightResources</Title>
         <Description>Light and dynamic resources for your Blazor WebAssembly website.</Description>

@@ -9,10 +9,10 @@ public static class RegistrationExtensions
 	{
 		var lightResources = new LightResourcesService();
 
-		LightResourcesService.SetDefaultCultureCode(defaultCultureCode);
-
 		foreach (var code in supportedLanguageCodes)
 			LightResourcesService.AddSupportedLanguage(code);
+
+		LightResourcesService.SetDefaultCultureCode(defaultCultureCode);
 
 		services.AddScoped<ILightResourcesService>(_ => lightResources);
 

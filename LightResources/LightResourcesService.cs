@@ -14,7 +14,7 @@ public class LightResourcesService : ILightResourcesService
 		if (_defaultCultureCode is not null)
 			throw new InvalidOperationException("Default culture code has already been set.");
 
-		SupportedLanguageCodes.CreateMember(cultureCode.LanguageCode);
+		SupportedLanguageCodes.GetSingleMember(memberValue: cultureCode.LanguageCode);
 
 		_defaultCultureCode = cultureCode;
 	}
