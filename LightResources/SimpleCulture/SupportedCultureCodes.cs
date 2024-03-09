@@ -1,6 +1,6 @@
 ﻿using CodeChops.MagicEnums;
 
-namespace CodeChops.LightResources;
+namespace CodeChops.LightResources.SimpleCulture;
 
 public record SupportedLanguageCodes : MagicCustomEnum<SupportedLanguageCodes, LanguageCode>
 {

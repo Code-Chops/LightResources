@@ -4,20 +4,14 @@ namespace CodeChops.LightResources;
 
 public static class RegistrationExtensions
 {
-	public static IServiceCollection AddLightResources(this IServiceCollection services, Func<CultureCode> currentCultureCode,
-		CultureCode defaultCultureCode, params LanguageCode[] supportedLanguageCodes)
+	public static IServiceCollection AddLightResources<TCulture>(this IServiceCollection services, TCulture defaultCulture,
+		Func<TCulture> currentCultureGetter, Func<TCulture, string> cultureToIdentifierTranslator)
 	{
-		var lightResources = new LightResourcesService();
-
-		foreach (var code in supportedLanguageCodes)
-			LightResourcesService.AddSupportedLanguage(code);
-
-		LightResourcesService.SetDefaultCultureCode(defaultCultureCode);
-
-		services.AddScoped<ILightResourcesService>(_ => lightResources);
-
-		var defaultScope = new CultureScope(cultureCodeGetter: currentCultureCode, isDefaultScope: true);
+		var defaultScope = new CultureScope(cultureGetter: () => currentCultureGetter()!, isDefaultScope: true);
 		CultureScope.SetDefaultScope(defaultScope);
+
+		LightResourcesService.CultureToIdentifierTranslator = culture => cultureToIdentifierTranslator((TCulture)culture);
+		LightResourcesService.DefaultCultureIdentifier = cultureToIdentifierTranslator(defaultCulture);
 
 		return services;
 	}

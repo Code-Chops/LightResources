@@ -15,22 +15,22 @@ public class CultureScope : AmbientScope<CultureScope>
     /// </summary>
     public static CultureScope Current => GetAmbientScope()!;
 
-    public Func<CultureCode> CultureCodeGetter { get; }
+    public Func<object> CultureGetter { get; }
 
-    public CultureScope(Func<CultureCode> cultureCodeGetter)
-        : this(cultureCodeGetter, isDefaultScope: false)
+    public CultureScope(Func<object> cultureGetter)
+        : this(cultureGetter, isDefaultScope: false)
     {
     }
 
-    public CultureScope(CultureCode cultureCode)
-        : this(() => cultureCode, isDefaultScope: false)
+    public CultureScope(object culture)
+        : this(() => culture, isDefaultScope: false)
     {
     }
 
-    internal CultureScope(Func<CultureCode> cultureCodeGetter, bool isDefaultScope)
+    internal CultureScope(Func<object> cultureGetter, bool isDefaultScope)
         : base(AmbientScopeOption.ForceCreateNew)
     {
-        this.CultureCodeGetter = cultureCodeGetter;
+        this.CultureGetter = cultureGetter;
 
         if (!isDefaultScope)
             this.Activate();

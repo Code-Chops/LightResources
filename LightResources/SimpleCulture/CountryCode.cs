@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace CodeChops.LightResources;
+namespace CodeChops.LightResources.SimpleCulture;
 
 /// <summary>
 /// An upper-case country code (ISO 3166-1 alpha-2).

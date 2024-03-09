@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace CodeChops.LightResources;
+namespace CodeChops.LightResources.SimpleCulture;
 
 /// <summary>
 /// The default ISO 639-1 language code with a 2-letter country code (ISO 3166-1 alpha-2) where relevant: "en-GB".
@@ -18,7 +18,10 @@ public partial record struct CultureCode
 	{
 		this._value = value;
 
-		var values = value.Split('-');
+		var values = value.Split('-').ToList();
+
+		validator?.GuardIndexInRange(values, 1, errorCode: null);
+
 		this.LanguageCode = new(values[0]);
 		this.CountryCode = new(values[1]);
 	}

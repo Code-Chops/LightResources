@@ -32,7 +32,7 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 		}
 		else
 		{
-			ThisLanguageCode = LightResourcesService.DefaultCultureCode;
+			ThisLanguageCode = LightResourcesService.DefaultCultureIdentifier;
 			DefaultResourceName = ThisResourceName;
 		}
 
@@ -61,7 +61,7 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 	// ReSharper disable once MethodOverloadWithOptionalParameter
 	protected new static string GetOrCreateMember(string value, [CallerMemberName] string name = null!, Func<TSelf>? memberCreator = null)
 	{
-		var currentLanguageCode = CultureScope.Current.CultureCodeGetter().LanguageCode;
+		var currentLanguageCode = LightResourcesService.CurrentCultureIdentifier;
 
 		if (name is null || value is null)
 			throw new ArgumentNullException($"Empty name: Unable to retrieve resource {ThisResourceName} for country code {currentLanguageCode}.");
@@ -93,7 +93,7 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 	{
 		if (!TryGetSingleMember(name!, out IMagicEnum<string>? member))
 			throw new InvalidOperationException(
-				$"Unable to retrieve resource {name} for {ThisResourceName} (or {DefaultResourceName + CultureScope.Current.CultureCodeGetter().LanguageCode}).");
+				$"Unable to retrieve resource {name} for {ThisResourceName} (or {DefaultResourceName + LightResourcesService.CurrentCultureIdentifier}).");
 
 		return member.Value!;
 	}
@@ -118,7 +118,7 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 	/// </summary>
 	public static bool TryGetSingleMember(string name, [NotNullWhen(true)] out IMagicEnum<string>? member)
 	{
-		var newResourceName = DefaultResourceName + CultureScope.Current.CultureCodeGetter().LanguageCode;
+		var newResourceName = DefaultResourceName + LightResourcesService.CurrentCultureIdentifier;
 
 		if (!TResourceEnum.TryGetSingleMember(newResourceName, out var specificResource) && !TResourceEnum.TryGetSingleMember(DefaultResourceName, out specificResource))
 		{
