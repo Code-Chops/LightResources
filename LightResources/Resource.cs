@@ -39,6 +39,8 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 		foreach (var member in TResourceEnum.GetMembers())
 			foreach (var property in member.Value.Type.GetProperties(BindingFlags.Public | BindingFlags.Static))
 				property.GetGetMethod()!.Invoke(obj: null, parameters: null);
+
+		RuntimeHelpers.RunClassConstructor(typeof(TResourceEnum).TypeHandle);
 	}
 
 	/// <inheritdoc cref="CodeChops.MagicEnums.MagicStringEnum{TSelf}.CreateMember(string, Func{TSelf}, string)"/>
