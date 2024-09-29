@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <PropertyGroup Label="Package">
-        <Version>1.6.1</Version>
+        <Version>1.6.2</Version>
         <PackageReleaseNotes>Initialization fix.</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>CodeChops.LightResources</Title>
@@ -56,9 +56,9 @@
 
     <ItemGroup Label="PackageReferences">
         <PackageReference Include="Architect.AmbientContexts" Version="2.0.0" />
-        <PackageReference Include="CodeChops.DomainModeling" Version="2.16.0" />
+        <PackageReference Include="CodeChops.DomainModeling" Version="2.17.7" />
         <PackageReference Include="CodeChops.ImplementationDiscovery" Version="1.8.6" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.8" />
     </ItemGroup>
 
 </Project>
