@@ -14,8 +14,8 @@
     </ItemGroup>
 
     <PropertyGroup Label="Package">
-        <Version>1.6.2</Version>
-        <PackageReleaseNotes>Initialization fix.</PackageReleaseNotes>
+        <Version>1.6.3</Version>
+        <PackageReleaseNotes>Updated packages.</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>CodeChops.LightResources</Title>
         <Description>Light and dynamic resources for your Blazor WebAssembly website.</Description>
@@ -43,11 +43,6 @@
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     </PropertyGroup>
 
-    <!-- Creates local nuget packages if in release mode and environment variable LocalNuGetPackagesFolder is configured -->
-    <Target Name="AddNugetPackage" AfterTargets="Pack" Condition="'$(Configuration)' == 'Release' AND '$(LocalNuGetPackagesFolder)' != null">
-        <Exec Command="$(LocalNuGetPackagesFolder)\nuget.exe add $(OutputPath)..\$(PackageId).$(PackageVersion).nupkg -source $(LocalNuGetPackagesFolder)" />
-    </Target>
-
     <ItemGroup Label="PackageAssets">
         <None Include="..\LICENSE" Pack="true" PackagePath="" />
         <None Include="..\icon.png" Pack="true" Visible="true" PackagePath="" />
@@ -56,8 +51,8 @@
 
     <ItemGroup Label="PackageReferences">
         <PackageReference Include="Architect.AmbientContexts" Version="2.0.0" />
-        <PackageReference Include="CodeChops.DomainModeling" Version="2.17.7" />
-        <PackageReference Include="CodeChops.ImplementationDiscovery" Version="1.8.6" />
+        <PackageReference Include="CodeChops.DomainModeling" Version="2.17.8" />
+        <PackageReference Include="CodeChops.ImplementationDiscovery" Version="1.8.7" />
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.8" />
     </ItemGroup>
 
