@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using CodeChops.ImplementationDiscovery;
 using CodeChops.MagicEnums;
 using CodeChops.MagicEnums.Core;
+using Microsoft.Extensions.Localization;
 
 namespace CodeChops.LightResources;
 
@@ -12,9 +13,10 @@ namespace CodeChops.LightResources;
 /// </summary>
 /// <typeparam name="TSelf">The implemented record.</typeparam>
 /// <typeparam name="TResourceEnum">The enum that contains all <see cref="IResource"/>-implementations. To be found at 'CodeChops.LightResources'.</typeparam>
-public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, IResource
+public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, IResource, IStringLocalizer<TSelf>
 	where TSelf : MagicStringEnum<TSelf>, IResource
-	where TResourceEnum : MagicEnumCore<ResourceEnum, DiscoveredObject<IResource>>, IMagicEnumCore<ResourceEnum, DiscoveredObject<IResource>>, IImplementationsEnum<IResource>, IInitializable
+	where TResourceEnum : MagicEnumCore<ResourceEnum, DiscoveredObject<IResource>>,
+		IMagicEnumCore<ResourceEnum, DiscoveredObject<IResource>>, IImplementationsEnum<IResource>, IInitializable
 {
 	private static string DefaultResourceName { get; }
 	private static string ThisResourceName { get; }
@@ -147,4 +149,15 @@ public abstract record Resource<TSelf, TResourceEnum> : MagicStringEnum<TSelf>, 
 
 	/// <inheritdoc cref="CodeChops.MagicEnums.Core.MagicEnumCore{TSelf, TValue}.GetMembers(TValue)"/>
 	public new static IEnumerable<TSelf> GetMembers(string memberValue) => MagicStringEnum<TSelf>.GetMembers(memberValue);
+
+	public IEnumerable<LocalizedString> GetAllStrings(bool includeParentCultures)
+	{
+		return GetMembers().Select(member => new LocalizedString(name: member.Name, value: member.Value ?? member.Name));
+	}
+
+	public LocalizedString this[string name]
+		=> new(name, GetSingleMember(name));
+
+	public LocalizedString this[string name, params object[] arguments]
+		=> new(name, String.Format(GetSingleMember(name), arguments));
 }
