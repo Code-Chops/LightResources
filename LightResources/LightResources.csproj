@@ -3,8 +3,8 @@
     <PropertyGroup Label="Main">
         <AssemblyName>CodeChops.LightResources</AssemblyName>
         <RootNamespace>CodeChops.LightResources</RootNamespace>
-        <TargetFramework>net8.0</TargetFramework>
-        <LangVersion>12</LangVersion>
+        <TargetFramework>net9.0</TargetFramework>
+        <LangVersion>13</LangVersion>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
@@ -14,8 +14,8 @@
     </ItemGroup>
 
     <PropertyGroup Label="Package">
-        <Version>1.6.4</Version>
-        <PackageReleaseNotes>IStringLocalizer support.</PackageReleaseNotes>
+        <Version>1.6.5</Version>
+        <PackageReleaseNotes>Updated to .net9.</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>CodeChops.LightResources</Title>
         <Description>Light and dynamic resources for your Blazor WebAssembly website.</Description>
@@ -50,11 +50,10 @@
     </ItemGroup>
 
     <ItemGroup Label="PackageReferences">
-        <PackageReference Include="Architect.AmbientContexts" Version="2.0.0" />
-        <PackageReference Include="CodeChops.DomainModeling" Version="2.17.8" />
-        <PackageReference Include="CodeChops.ImplementationDiscovery" Version="1.8.7" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.8" />
-        <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="8.0.8" />
+        <PackageReference Include="Architect.AmbientContexts" Version="2.0.1" />
+        <PackageReference Include="CodeChops.DomainModeling" Version="2.18.4" />
+        <PackageReference Include="CodeChops.ImplementationDiscovery" Version="1.8.8" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.0" />
     </ItemGroup>
 
 </Project>
