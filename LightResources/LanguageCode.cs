@@ -1,16 +1,25 @@
 using System.Text.RegularExpressions;
+using Architect.DomainModeling;
 
 namespace CodeChops.LightResources;
 
-/// <summary>
-/// An upper-case (ISO 639) language code.
-/// </summary>
-[GenerateStringValueObject(minimumLength: 2, maximumLength: 2,
- 	stringComparison: StringComparison.Ordinal, valueIsNullable: false, stringFormat: StringFormat.Alpha,
-    stringCaseConversion: StringCaseConversion.UpperInvariant, propertyIsPublic: true, useRegex: true,
-    useValidationExceptions: false)]
-public partial record struct LanguageCode
+[WrapperValueObject<string>]
+public sealed partial class LanguageCode : IComparable<LanguageCode>
 {
-	[GeneratedRegex("^[a-zA-Z]{2}$")]
-	public static partial Regex ValidationRegex();
+    public override string ToString() => this.Value;
+    protected override StringComparison StringComparison => StringComparison.OrdinalIgnoreCase;
+
+    [GeneratedRegex("^[a-zA-Z]{2}$")]
+    private static partial Regex ValidationRegex();
+
+    public LanguageCode(string value)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(value);
+
+        var match = ValidationRegex().Match(value);
+        if (!match.Success)
+            throw new ArgumentException($"Invalid language code: {value}");
+
+        this.Value = value;
+    }
 }

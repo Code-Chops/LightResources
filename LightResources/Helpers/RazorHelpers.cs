@@ -8,7 +8,7 @@ internal static class RazorHelpers
     }
 
     public static string? If(string? value, string output)
-	{
+    {
         return value is not null ? output : null;
-	}
+    }
 }

@@ -42,16 +42,14 @@ namespace CodeChops.Website.Client.Pages.Home;
 
 public record HomeResource : Resource<HomeResource, ResourceProxyEnum>
 {
-    public static string Title	=> CreateMember("Welcome");
-	
-    public static string Author	=> CreateMember("Logo, design and website by CodeChops");
+    public static string Title  => CreateMember("Welcome");
+    public static string Author => CreateMember("Logo, design and website by CodeChops");
 }
 
 public record HomeResourceNL : Resource<HomeResourceNL, ResourceProxyEnum>
 {
-    public static string Title { get; }	 = CreateMember("Welkom");
-
-    public static string Author { get; } = CreateMember("Logo, design en website door CodeChops");
+    public static string Title  => CreateMember("Welkom");
+    public static string Author => CreateMember("Logo, design en website door CodeChops");
 }
 ```
 
